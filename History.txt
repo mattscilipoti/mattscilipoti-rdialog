@@ -1,5 +1,6 @@
 +++ 0.5.1 2009-11-03
 + minor enhancement:
+  + Support --yesno dialog
   + Setup with Jeweller
 
 +++ 0.1.0 2007-04-27
