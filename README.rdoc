@@ -1,9 +1,12 @@
 = mattscilipoti-rdialog
 
-Description goes here.
+A gem providing a ruby interface to the n-curses dialog generator dialog.
+'Forked' from http://rubyforge.org/projects/rdialog.
+All credit goes to its author: Aleks Clark.
+We just made small tweaks (and added jeweller support).
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a

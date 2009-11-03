@@ -5,11 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "mattscilipoti-rdialog"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "A gem providing a ruby interface to the n-curses dialog generator - 'dialog'."
+    gem.description = %Q{A gem providing a ruby interface to the n-curses dialog generator - 'dialog'.
+      'Forked' from http://rubyforge.org/projects/rdialog.  
+      All credit goes to its author: Aleks Clark.
+      We just made small tweaks (and added jeweller support).}
     gem.email = "matt@scilipoti.name"
     gem.homepage = "http://github.com/mattscilipoti/mattscilipoti-rdialog"
-    gem.authors = ["Matt Scilipoti"]
+    gem.authors = ["Aleks Clark", "Matt Scilipoti"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
