@@ -1,9 +1,10 @@
 module Rdialog #:nodoc:
-  module VERSION #:nodoc:
-    MAJOR = 0
-    MINOR = 5
-    TINY  = 0
-
-    STRING = [MAJOR, MINOR, TINY].join('.')
+  def self.version
+    version_file = File.expand_path("../../VERSION", File.dirname(__FILE__))
+    File.open( version_file, "r") do |version_file|
+      version_file.read.strip
+    end
   end
+
+  VERSION = Rdialog.version
 end
