@@ -11,90 +11,91 @@
 
 require 'tempfile'
 require 'date'
-class RDialog 
-	#
+class RDialog
+	#.
+
 	# All accessors are boolean unless otherwise noted.
 	#
-	
+
 	#
-	# This gives you some control over the box dimensions when 
-	# using auto sizing (specifying 0 for height and width). 
-	# It represents width / height. The default is 9, 
+	# This gives you some control over the box dimensions when
+	# using auto sizing (specifying 0 for height and width).
+	# It represents width / height. The default is 9,
 	# which means 9 characters wide to every 1 line high.
 	#
 	attr_accessor :aspect
-	
+
 	#
-	# Specifies a backtitle string to be displayed on the backdrop, 
+	# Specifies a backtitle string to be displayed on the backdrop,
 	# at the top of the screen.
 	#
 	attr_accessor :backtitle
-	
+
 	#
 	# Sound the audible alarm each time the screen is refreshed.
 	#
 	attr_accessor :beep
-	
+
 	#
 	# Specify the position of the upper left corner of a dialog box
 	# on the screen, as an array containing two integers.
 	#
 	attr_accessor :begin
-	
+
 	#
-	# Interpret embedded newlines in the dialog text as a newline 
-	# on the screen. Otherwise, dialog will only wrap lines where 
-	# needed to fit inside the text box. Even though you can control 
-	# line breaks with this, dialog will still wrap any lines that are 
+	# Interpret embedded newlines in the dialog text as a newline
+	# on the screen. Otherwise, dialog will only wrap lines where
+	# needed to fit inside the text box. Even though you can control
+	# line breaks with this, dialog will still wrap any lines that are
 	# too long for the width of the box. Without cr-wrap, the layout
-	# of your text may be formatted to look nice in the source code of 
+	# of your text may be formatted to look nice in the source code of
 	# your script without affecting the way it will look in the dialog.
 	#
 	attr_accessor :crwrap
-	
+
 	#
-	# Interpret the tags data for checklist, radiolist and menuboxes 
-	# adding a column which is displayed in the bottom line of the 
+	# Interpret the tags data for checklist, radiolist and menuboxes
+	# adding a column which is displayed in the bottom line of the
 	# screen, for the currently selected item.
 	#
 	attr_accessor :itemhelp
 
 	#
-	# Suppress the "Cancel" button in checklist, inputbox and menubox 
-	# modes. A script can still test if the user pressed the ESC key to 
+	# Suppress the "Cancel" button in checklist, inputbox and menubox
+	# modes. A script can still test if the user pressed the ESC key to
 	# cancel to quit.
 	#
 	attr_accessor :nocancel
-	
+
 	#
 	# Draw a shadow to the right and bottom of each dialog box.
-	# 
-	attr_accessor :shadow
-	
 	#
-	# Sleep (delay) for the given integer of seconds after processing 
+	attr_accessor :shadow
+
+	#
+	# Sleep (delay) for the given integer of seconds after processing
 	# a dialog box.
 	#
 	attr_accessor :sleep
-	
+
 	#
-	# Convert each tab character to one or more spaces. 
-	# Otherwise, tabs are rendered according to the curses library's 
+	# Convert each tab character to one or more spaces.
+	# Otherwise, tabs are rendered according to the curses library's
 	# interpretation.
 	#
 	attr_accessor :tabcorrect
-	
+
 	#
-	# Specify the number(int) of spaces that a tab character occupies 
+	# Specify the number(int) of spaces that a tab character occupies
 	# if the tabcorrect option is set true. The default is 8.
 	#
 	attr_accessor :tablen
-	
+
 	#
 	# Title string to be displayed at the top of the dialog box.
 	#
 	attr_accessor :title
-	
+
 	#
 	# Alternate path to dialog. If this is not set, environment path
 	# is used.
@@ -119,9 +120,9 @@ class RDialog
 
 		tmp = Tempfile.new('tmp')
 
-		command = option_string() + "--calendar \"" + text.to_s + 
-			"\" " + height.to_i.to_s + " " + width.to_i.to_s + " " + 
-			day.to_i.to_s + " " + month.to_i.to_s + " " + year.to_i.to_s + 
+		command = option_string() + "--calendar \"" + text.to_s +
+			"\" " + height.to_i.to_s + " " + width.to_i.to_s + " " +
+			day.to_i.to_s + " " + month.to_i.to_s + " " + year.to_i.to_s +
 			" 2> " + tmp.path
 		success = system(command)
 		if success
@@ -131,8 +132,8 @@ class RDialog
 		else
 			tmp.close!
 			return success
-		end	
-		
+		end
+
 	end
 
 	#      A  checklist  box  is similar to a menu box; there are multiple
@@ -142,7 +143,7 @@ class RDialog
         #      fied by status.
 
 	def checklist(text, items, height=0, width=0, listheight=0)
-		
+
 		tmp = Tempfile.new('tmp')
 
 		itemlist = String.new
@@ -153,7 +154,7 @@ class RDialog
 			else
 				item[2] = "off"
 			end
-			itemlist += "\"" + item[0].to_s + "\" \"" + item[1].to_s + 
+			itemlist += "\"" + item[0].to_s + "\" \"" + item[1].to_s +
 			"\" " + item[2] + " "
 
 			if @itemhelp
@@ -164,7 +165,7 @@ class RDialog
 		command = option_string() + "--checklist \"" + text.to_s +
                         "\" " + height.to_i.to_s + " " + width.to_i.to_s +
 			" " + listheight.to_i.to_s + " " + itemlist + "2> " +
-			tmp.path 
+			tmp.path
 		puts command
 		success = system(command)
 		puts success
@@ -333,7 +334,7 @@ class RDialog
                         tmp.close!
                         return success
                 end
-		
+
 	end
 
         #      A message box is very similar to a yes/no box.  The  only  dif-
@@ -427,7 +428,7 @@ class RDialog
 
 		command = option_string() + opt +" \"" + file.to_s +
                 "\" " + height.to_i.to_s + " " + width.to_i.to_s + " "
-		
+
 		success = system(command)
 
 		return success
@@ -447,7 +448,7 @@ class RDialog
 
                 command = option_string() + "--timebox \"" + text.to_s +
                         "\" " + height.to_i.to_s + " " + width.to_i.to_s + " " +
-			time.hour.to_s + " " + time.min.to_s + " " + 
+			time.hour.to_s + " " + time.min.to_s + " " +
 			time.sec.to_s + " 2> " + tmp.path
                 success = system(command)
                 if success
@@ -458,7 +459,7 @@ class RDialog
                         tmp.close!
                         return success
                 end
-		
+
 	end
 
         #      An input box is useful when you  want  to  ask  questions  that
@@ -492,7 +493,7 @@ class RDialog
 			rescue EOFError
 				selected_string = ""
 			end
-			tmp.close!			
+			tmp.close!
                         return selected_string
                 else
                         tmp.close!
@@ -512,14 +513,14 @@ class RDialog
         #      switch between by pressing the TAB key.
 
 	def yesno(text="Please enter some text", height=0, width=0)
-		command = option_string() + "--inputbox \"" + text.to_s +
+		command = option_string() + "--yesno \"" + text.to_s +
                 "\" " + height.to_i.to_s + " " + width.to_i.to_s
 
 		success = system(command)
 		return success
 	end
 
-	private	
+	private
 
 	def option_string()
 		unless @path_to_dialog
@@ -530,18 +531,18 @@ class RDialog
 		if @aspect
 			ostring += "--aspect " + aspect + " "
 		end
-		
+
 		if @beep
 			ostring += "--beep "
 		end
-		
-		if @boxbegin 
+
+		if @boxbegin
 			ostring += "--begin " + @boxbegin[0] + @boxbegin[1] + " "
 		end
 
 		if @backtitle
 			ostring += "--backtitle \"" + @backtitle + "\" "
-		end 
+		end
 
 		if @itemhelp
 			ostring += "--item-help "
@@ -550,7 +551,7 @@ class RDialog
 		unless @shadow == nil
 			if @shadow == true
 				ostring += "--shadow "
-			else 
+			else
 				ostring += "--no-shadow "
 			end
 		end
