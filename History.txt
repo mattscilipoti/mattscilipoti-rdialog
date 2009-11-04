@@ -1,6 +1,13 @@
-+++ 0.5.1 2009-11-03
++++ 0.7.0 2009-11-03
++ minor enhancement:
+  + New option: --timeout
+
++++ 0.6.0 2009-11-03
 + minor enhancement:
   + Support --yesno dialog
+
++++ 0.5.1 2009-11-03
++ minor enhancement:
   + Setup with Jeweller
 
 +++ 0.1.0 2007-04-27

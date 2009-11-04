@@ -91,6 +91,14 @@ class RDialog
 	#
 	attr_accessor :tablen
 
+  #
+  # Specify the timeout in secs
+  # Timeout (exit with error code) if no user response within the given number of seconds.
+  # This is overridden if the background "--tailboxbg is used.
+  # A timeout of zero seconds is ignored.
+  #
+  attr_accessor :timeout
+
 	#
 	# Title string to be displayed at the top of the dialog box.
 	#
@@ -567,6 +575,10 @@ class RDialog
 		if @tablen
 			ostring += "--tab-len " + @tablen.to_i + " "
 		end
+
+    if @timeout
+      ostring += "--timeout " + @timeout.to_s + " "
+    end
 
 		if @title
 			ostring += "--title " + @title.to_s + " "
