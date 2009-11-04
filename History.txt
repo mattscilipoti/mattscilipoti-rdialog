@@ -1,4 +1,4 @@
-+++ 0.7.0 2009-11-03
++++ 0.6.1 2009-11-03
 + minor enhancement:
   + New option: --timeout
 
