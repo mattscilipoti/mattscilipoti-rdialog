@@ -581,7 +581,7 @@ class RDialog
     end
 
 		if @title
-			ostring += "--title " + @title.to_s + " "
+			ostring += "--title \"" + @title.to_s + "\" "
 		end
 
 		if @nocancel
