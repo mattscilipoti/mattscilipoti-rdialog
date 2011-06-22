@@ -583,7 +583,7 @@ class RDialog
 		end
 
 		if @sleep
-			ostring += "--sleep " + @sleep.to_i + " "
+			ostring += "--sleep " + @sleep.to_s + " "
 		end
 
 		if @tabcorrect
