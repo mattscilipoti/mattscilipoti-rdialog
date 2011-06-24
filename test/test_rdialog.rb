@@ -17,12 +17,16 @@ class TestRdialogPlus < Test::Unit::TestCase
     @dial = RDialog.new
   end
   
-  def test_cancel_label
-    @dial.cancellabel = "Cancel label"
-  end
-  
-  def test_ok_label
-    @dial.oklabel = "Ok label"
+  def test_labels
+    
+    assert_nothing_raised( NoMethodError ) do
+      @dial.cancellabel = "Cancel label"
+    end
+    
+    assert_nothing_raised( NoMethodError ) do
+      @dial.oklabel = "Ok label"
+    end
+    
   end
   
 end
