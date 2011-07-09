@@ -12,7 +12,7 @@ begin
       We just made small tweaks (and added jeweller support).}
     gem.email = "matt@scilipoti.name"
     gem.homepage = "http://github.com/mattscilipoti/mattscilipoti-rdialog"
-    gem.authors = ["Aleks Clark", "Matt Scilipoti"]
+    gem.authors = ["Aleks Clark", "Matt Scilipoti", "Lucas Vieira"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

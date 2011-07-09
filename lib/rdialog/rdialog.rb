@@ -41,6 +41,11 @@ class RDialog
 	# on the screen, as an array containing two integers.
 	#
 	attr_accessor :begin
+    
+    #
+    #Override the label used for "Cancel" buttons.
+    #
+	attr_accessor :cancellabel
 
 	#
 	# Interpret embedded newlines in the dialog text as a newline
@@ -66,6 +71,11 @@ class RDialog
 	# cancel to quit.
 	#
 	attr_accessor :nocancel
+	
+	#
+	#Override the label used for "Ok" buttons.
+	#
+	attr_accessor :oklabel
 
 	#
 	# Draw a shadow to the right and bottom of each dialog box.
@@ -551,6 +561,14 @@ class RDialog
 		if @backtitle
 			ostring += "--backtitle \"" + @backtitle + "\" "
 		end
+		
+		if @cancellabel
+		    ostring += "--cancel-label \"" + @cancellabel + "\" "
+		end
+
+		if @oklabel
+		    ostring += "--ok-label \"" + @oklabel + "\" "
+		end
 
 		if @itemhelp
 			ostring += "--item-help "
@@ -565,7 +583,7 @@ class RDialog
 		end
 
 		if @sleep
-			ostring += "--sleep " + @sleep.to_i + " "
+			ostring += "--sleep " + @sleep.to_s + " "
 		end
 
 		if @tabcorrect
@@ -581,7 +599,7 @@ class RDialog
     end
 
 		if @title
-			ostring += "--title " + @title.to_s + " "
+			ostring += "--title \"" + @title.to_s + "\" "
 		end
 
 		if @nocancel
