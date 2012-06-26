@@ -30,3 +30,20 @@ class TestRdialogPlus < Test::Unit::TestCase
   end
   
 end
+
+#Just to keep stuff untouched
+class TestRdialogGauge < Test::Unit::TestCase
+  
+  def setup
+    @dial = RDialog.new
+  end
+  
+  def test_gauge_only_takes_integers
+    
+    assert_equal(@dial.gauge("Test", 100), true)
+    assert_equal(@dial.gauge("Test", "50"), true)
+    assert_equal(@dial.gauge("Test", {}), false)
+    
+  end
+  
+end
