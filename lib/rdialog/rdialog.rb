@@ -248,9 +248,22 @@ class RDialog
                         return success
                 end
 	end
-	# Does not work. Someone is welcome to try and make it work.
-	def gauge(text, height=0, width=0)
-		return false
+
+	#      A gauge is basically an info box with showing of a percentage value,
+	#      given as the second parameter in the range from 0 to 100 
+
+	def gauge(text, value, height=0, width=0)
+		begin
+			intval = value.to_i
+		rescue
+			return false
+		end
+
+		command = option_string() + "--gauge \""+text.to_s+"\" " + height.to_i.to_s + " " + width.to_i.to_s + " 0"
+
+		success  = system("echo #{intval} | "+command)
+		
+		return success
 	end
 
         #      An info box is basically a message box.  However, in this case,
